@@ -14,6 +14,7 @@ __pycache__
 *.log
 *.log.*
 *.log-*
-rasa_bot/models/
+rasa_bot/models/*.gz
 .idea/
 .idea/*
+*/models/
