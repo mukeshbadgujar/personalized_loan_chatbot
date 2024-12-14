@@ -1,0 +1,47 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+    
+- story: tell about personal loan
+  steps:
+  - intent: ask_personalized_loan
+  - action: utter_personalized_loan
+
+- story: tell weather
+  steps:
+    - user: "what is the weather today"
+    - action: utter_weather
+
+- story: ask questions
+  steps:
+      - user: "how old are you"
+      - action: utter_ask_age
+      - user: "what is your phone number"
+      - action: utter_ask_phone_number
