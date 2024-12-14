@@ -51,9 +51,7 @@
 - [Showdownjs](https://github.com/showdownjs/showdown) for Markdown suppport
 - [Chart.js](https://www.chartjs.org/) for Charts
 
-## Demo:
 
-Check out the widget in action here [demo](https://www.youtube.com/watch?v=mnolLtOWykk)
 
 
 
