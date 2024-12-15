@@ -1,67 +1,60 @@
 version: "3.1"
-
 stories:
-- story: happy path
+- story: order pizza with size and type
   steps:
   - intent: greet
   - action: utter_greet
   - intent: order_pizza
     entities:
-    - pizza_type: pepperoni # Correct way to define entities
-  - slot_was_set:
     - pizza_type: pepperoni
-  - action: utter_slots_values
+    - pizza_size: medium
+  - action: action_check_pizza_availability # Check availability
   - intent: goodbye
   - action: utter_goodbye
 
-- story: order pizza
+- story: order pizza with type, then size
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: order_pizza
-  - action: utter_ask_pizza_type
   - intent: order_pizza
     entities:
-    - pizza_type: vegetarian # Correct way to define entities
-  - slot_was_set:
     - pizza_type: vegetarian
-  - action: utter_slots_values
+  - action: action_check_pizza_availability # Check availability
+  - intent: order_pizza
+    entities:
+    - pizza_size: large
+  - slot_was_set:
+    - pizza_size: large # Only set the size slot here
+  - action: utter_confirm_order
   - intent: goodbye
   - action: utter_goodbye
 
-- story: sad path 1
+- story: order pizza without type, then provide type and size
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
+  - intent: order_pizza
+  - action: action_check_pizza_availability # Ask for pizza type
+  - intent: order_pizza
+    entities:
+    - pizza_type: margherita
+  - action: action_check_pizza_availability # Check availability
+  - intent: order_pizza
+    entities:
+    - pizza_size: small
+  - slot_was_set:
+    - pizza_size: small # Only set the size slot here
+  - action: utter_confirm_order
+  - intent: goodbye
   - action: utter_goodbye
-    
-- story: tell about personal loan
-  steps:
-  - intent: ask_personalized_loan
-  - action: utter_personalized_loan
 
-- story: tell weather
+- story: order unknown pizza type
   steps:
-    - user: "what is the weather today"
-    - action: utter_weather
-
-- story: ask questions
-  steps:
-      - user: "how old are you"
-      - action: utter_ask_age
-      - user: "what is your phone number"
-      - action: utter_ask_phone_number
+  - intent: greet
+  - action: utter_greet
+  - intent: order_pizza
+    entities:
+      - pizza_type: test
+  - action: action_check_pizza_availability # Check availability (will trigger "not available")
+  - intent: goodbye
+  - action: utter_goodbye

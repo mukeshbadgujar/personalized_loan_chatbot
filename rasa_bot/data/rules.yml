@@ -1,19 +1,23 @@
 version: "3.1"
 
 rules:
-
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
   - action: utter_goodbye
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: Say 'Hey! How are you?' if the user says hi
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - intent: greet
+  - action: utter_greet
 
-- rule: Ask for age and phone number
+
+- rule: Respond to affirmations
   steps:
-  - intent: question_age_number
-  - action: utter_ask_age
-  - action: utter_ask_phone_number
+  - intent: affirm
+  - action: utter_affirm
+
+- rule: List available pizzas
+  steps:
+  - intent: request_pizza_list # You'll need to add this intent to nlu.yml
+  - action: actions.pizza_actions.ActionUtterPizzaList

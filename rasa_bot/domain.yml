@@ -3,57 +3,31 @@ version: "3.1"
 intents:
   - greet
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-  - ask_personalized_loan
-  - question_age_number
   - order_pizza
+  - affirm
+  - request_pizza_list
 
 responses:
   utter_ask_pizza_type:
     - text: "What kind of pizza would you like?"
-
   utter_slots_values:
     - text: "Okay. I will order a {pizza_type} pizza"
-
-  utter_ask_age:
-    - text: "How old are you?"
-
-  utter_ask_phone_number:
-    - text: "What is your phone number?"
-
+  utter_ask_pizza_size:
+    - text: "What size would you like (small, medium, or large)?"
+  utter_confirm_order:
+    - text: "Great! So you want a {pizza_size} {pizza_type} pizza. Is that correct?"
+  utter_no_pizza_type:
+    - text: "What kind of pizza would you like to order?"
   utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
+    - text: "Hey! How are you?"
   utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
-  utter_personalized_loan:
-    - text: "I can help you with that. Please provide me with your name and phone number."
-
-  utter_weather:
-    - text: "I am a bot, powered by Rasa."
+    - text: "Bye"
+  utter_affirm:
+    - text: "Glad to hear that!"
 
 entities:
   - pizza_type
-  - age
-  - phone_number
+  - pizza_size
 
 slots:
   pizza_type:
@@ -63,26 +37,24 @@ slots:
       - type: from_entity
         entity: pizza_type
 
-  age:
+  pizza_size:
     type: text
-    influence_conversation: false
+    influence_conversation: true
     mappings:
       - type: from_entity
-        entity: age
-
-  phone_number:
-    type: text
-    influence_conversation: false
-    mappings:
-      - type: from_entity
-        entity: phone_number
+        entity: pizza_size
 
 actions:
   - utter_greet
   - utter_ask_pizza_type
-  - utter_goodbye
   - utter_slots_values
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  - utter_ask_pizza_size
+  - utter_confirm_order
+  - utter_no_pizza_type
+  - utter_goodbye
+  - utter_affirm
+  - actions.pizza_actions.ActionCheckPizzaAvailability
+  - actions.pizza_actions.ActionUtterPizzaList
+  - actions.general_actions.ActionUtterGreet
+  - actions.general_actions.ActionUtterAffirm
+  - action_check_pizza_availability

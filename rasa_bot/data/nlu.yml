@@ -1,112 +1,111 @@
 version: "3.1"
-
 nlu:
 - intent: greet
   examples: |
     - hey
     - hello
     - hi
-    - hello there
+    - how are you?
+    - what's up?
     - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
     - good afternoon
-
-- intent: goodbye
-  examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
-
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
-
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
-
-- intent: ask_personalized_loan
-  examples: |
-    - I need a loan
-    - I need a loan of 5000
-    - Can I get a loan?
-
-- intent: question_age_number
-  examples: |
-    - age [26](number)
-    - I am [30](number) years old. How about you?
-    - Can you guess my age?
-    - phone [1234567890](number)
-    - number is [1234567890](number)
-
+    - good evening
+    
 
 - intent: order_pizza
   examples: |
     - I want to order a pizza
-    - I'd like to get a [pepperoni](pizza_type) pizza
+    - I'd like a [pepperoni](pizza_type) pizza
     - Can I order a [vegetarian](pizza_type) pizza?
+    - I want a [small](pizza_size) pizza
+    - I want a [medium](pizza_size) [pepperoni](pizza_type) pizza
+    - a [large](pizza_size) one
+
+- intent: affirm
+  examples: |
+    - good
+    - great
+    - fine
+    - I'm good
+    - I'm doing well
+    - I'm fine, thanks
+    - all good
+    - everything's good
+    - sounds good
+    - that's good
+    - it is good
+    - I am good
+    - yes
+    - yeah
+    - okay
+    - alright
+    - cool
+    - perfect
+    - excellent
+    - wonderful
+    - fantastic
+    - awesome
+    - I'm great
+    - I'm doing great
+    - very well
+    - quite well
+    - not bad
+    - not too bad
+    - pretty good
+    - I'm ok
+    - I'm okay
+    - ok
+    - sure
+    - certainly
+    - definitely
+    - absolutely
+    - indeed
+    - exactly
+    - right
+    - correct
+    - that's right
+    - that is correct
+    - you are right
+    - yes, that's right
+    - yeah, that's correct
+    - ok, sounds good
+    - alright, perfect
+    - great, thanks
+    - fine, thank you
+    - good, how about you?
+    - I'm good, and you?
+    - doing well, thanks for asking
+    - everything is fine
+    - all is well
+    - everything is ok
+    - all is okay
+    - all is good
+    - all is great
+    - things are good
+    - things are great
+    - life is good
+    - life is great
+    - the day is good
+    - the day is great
+    - this is good
+    - this is great
+    - everything is going well
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - bye bye
+    - have a good day
+    - take care
+    - I'm off
+    - I have to go
+    - gotta go
+    - later
+    - see ya
+    - farewell
+    - have a nice day
+    - have a great time
+    - talk to you later
+    - catch you later
+    - so long

@@ -171,3 +171,8 @@ stories:
 6. Now you can test the chatbot by typing the messages in the shell and ask them
 ![img.png](img.png) 
 
+# Rasa Custom Actions Example
+
+### Now in the commit mesaaeg you will see that i added chnages in files for below
+![img_1.png](img_1.png)
+
