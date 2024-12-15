@@ -1,13 +1,33 @@
 version: "3.1"
 
 stories:
-
 - story: happy path
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - intent: order_pizza
+    entities:
+    - pizza_type: pepperoni # Correct way to define entities
+  - slot_was_set:
+    - pizza_type: pepperoni
+  - action: utter_slots_values
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: order pizza
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: order_pizza
+  - action: utter_ask_pizza_type
+  - intent: order_pizza
+    entities:
+    - pizza_type: vegetarian # Correct way to define entities
+  - slot_was_set:
+    - pizza_type: vegetarian
+  - action: utter_slots_values
+  - intent: goodbye
+  - action: utter_goodbye
 
 - story: sad path 1
   steps:

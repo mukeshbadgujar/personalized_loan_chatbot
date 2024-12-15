@@ -82,3 +82,92 @@
     rasa run -m models --enable-api --cors "*" --debug
     rasa run actions
 ```
+
+
+# Example Usecase of RASA
+
+1. open nlu.yml fileand add below in file
+```aiignore
+- intent: order_pizza
+  examples: |
+    - I want to order a pizza
+    - I'd like to get a [pepperoni](pizza_type) pizza
+    - Can I order a [vegetarian](pizza_type) pizza?
+```
+
+2. open domain.yml file and add below in file
+```aiignore
+
+responses:
+  utter_ask_pizza_type:
+    - text: "What kind of pizza would you like?"
+  utter_slots_values:
+    - text: "Okay. I will order a {pizza_type} pizza"
+
+entities:
+  - pizza_type
+  slots:
+    pizza_type:
+      type: text
+      influence_conversation: false
+      mappings:
+        - type: from_entity
+          entity: pizza_type
+
+intents:
+    - greet
+    - goodbye
+    - order_pizza
+
+actions:
+     - utter_greet
+     - utter_ask_pizza_type
+     - utter_goodbye
+     - utter_slots_values
+```
+
+3. Create Stories in stories.yml file
+```aiignore
+stories:
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: order_pizza
+    entities:
+    - pizza_type: pepperoni # Correct way to define entities
+  - slot_was_set:
+    - pizza_type: pepperoni
+  - action: utter_slots_values
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: order pizza
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: order_pizza
+  - action: utter_ask_pizza_type
+  - intent: order_pizza
+    entities:
+    - pizza_type: vegetarian # Correct way to define entities
+  - slot_was_set:
+    - pizza_type: vegetarian
+  - action: utter_slots_values
+  - intent: goodbye
+  - action: utter_goodbye
+```
+
+4. Train the model
+```bash
+    rasa train
+```
+
+5. Start the Rasa server
+```bash
+    rasa shell
+```
+
+6. Now you can test the chatbot by typing the messages in the shell and ask them
+![img.png](img.png) 
+

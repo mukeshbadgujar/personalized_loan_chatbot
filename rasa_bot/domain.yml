@@ -10,8 +10,15 @@ intents:
   - bot_challenge
   - ask_personalized_loan
   - question_age_number
+  - order_pizza
 
 responses:
+  utter_ask_pizza_type:
+    - text: "What kind of pizza would you like?"
+
+  utter_slots_values:
+    - text: "Okay. I will order a {pizza_type} pizza"
+
   utter_ask_age:
     - text: "How old are you?"
 
@@ -43,7 +50,19 @@ responses:
   utter_weather:
     - text: "I am a bot, powered by Rasa."
 
+entities:
+  - pizza_type
+  - age
+  - phone_number
+
 slots:
+  pizza_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: pizza_type
+
   age:
     type: text
     influence_conversation: false
@@ -58,6 +77,11 @@ slots:
       - type: from_entity
         entity: phone_number
 
+actions:
+  - utter_greet
+  - utter_ask_pizza_type
+  - utter_goodbye
+  - utter_slots_values
 
 session_config:
   session_expiration_time: 60

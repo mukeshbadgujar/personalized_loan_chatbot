@@ -104,3 +104,9 @@ nlu:
     - phone [1234567890](number)
     - number is [1234567890](number)
 
+
+- intent: order_pizza
+  examples: |
+    - I want to order a pizza
+    - I'd like to get a [pepperoni](pizza_type) pizza
+    - Can I order a [vegetarian](pizza_type) pizza?
